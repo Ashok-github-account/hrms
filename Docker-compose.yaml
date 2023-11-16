@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  # Database
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: 'NewServerrrrrr'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'uuuu1111'
+    ports:
+      - "5432:5432"
+  
+  # Django web app
+  web:
+    build: .
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
