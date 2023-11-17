@@ -1,12 +1,12 @@
 version: '3'
 
 services:
-  #nginx server config
-  #  hrms:
-  # image: mynginx
-  # ports:
-  #   - "80:80"
-  #Django Application
+  # nginx server config
+  hrms:
+    image: mynginx
+    ports:
+      - "80:80"
+  # Django Application
   web:
     image: myimage
     #command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
@@ -28,7 +28,8 @@ services:
       - EMAIL_USE_SSL=False
       - DEFAULT_FROM_EMAIL=hrms.marolix@gmail.com
       - EMAIL_HOST_USER=hrms.marolix@gmail.com
-   # PostgreSQL Database
+
+  # PostgreSQL Database
   db:
     image: postgres:12
     volumes:
