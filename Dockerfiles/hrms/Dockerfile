@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.8
+FROM python:3.8.18
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -19,7 +19,6 @@ RUN pip install --upgrade pip && \
 COPY . /code/
 
 # Collect static files
-RUN python manage.py collectstatic --noinput
+ENTRYPOINT ["sh", "docker.sh"]
 
-# Run gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "AdminAccount.wsgi:application"]
+EXPOSE 8000
